@@ -1,0 +1,8 @@
+Sort the vector @ O(n log n)
+Create vars: int MOST, VAL, CURRENT
+for ELEMENT in LIST:
+    CURRENT += 1
+    if CURRENT >= MOST:
+        MOST = CURRENT
+        VAL = ELEMENT
+return (VAL, MOST)

@@ -1,0 +1,21 @@
+// Returns true if set1[] and set2[] are disjoint, else false
+bool areDisjoint(int set1[], int set2[], int m, int n)
+{
+    // Sort the given two sets
+    sort(set1, set1+m);
+    sort(set2, set2+n);
+ 
+    // Check for same elements using merge like process
+    int i = 0, j = 0;
+    while (i < m && j < n)
+    {
+        if (set1[i] < set2[j])
+            i++;
+        else if (set2[j] < set1[i])
+            j++;
+        else /* if set1[i] == set2[j] */
+            return false;
+    }
+ 
+    return true;
+}

@@ -1,0 +1,43 @@
+
+
+function R_table = trainGHT(E,Gd)
+	[X Y] = find(E==1);
+	xc = mean(x); yc = mean(y);
+	nPts = length(x);
+	angleBins = [0 45 90 135 180 225 270 315 360];
+
+	R_table = {};
+	
+	for i = 1:nPts
+		x = X(i); y = Y(i);
+		r = [xc-x yc-y];
+		ang = Gd(x,y)+90;
+		idx = (angleBins == ang)
+		v = R_table{idx};
+		v = [v r'];
+		R_table(idx) = v;
+	end	
+
+end
+
+function [centroids] = findShape(R_table,Et,Gdt,angleBins,th)
+	A = zeros(size(Et));
+	[X Y] = find(Et == 1);
+
+	nPts = length(X);
+	for i = 1:nPts
+
+		x = X(i); y = Y(i);
+		ang = Gdt(x,y)+90;
+		idx = (angleBins == ang);
+		v = R_table{idx};
+		for j = 1:size(v,2)
+			r = v(:,j);
+			c = round([x y]'+r);
+			A(c(1),c(2))++;
+		end
+	end
+
+	centroids = find(A>=th);
+
+end

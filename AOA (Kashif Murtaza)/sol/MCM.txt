@@ -1,0 +1,28 @@
+K = MCM(P[])
+{
+	n = P.length - 1;
+	M = zeroes(n, n);
+	K = zeroes(n, n);
+	for (ii = 1; i <= n; ii++)
+	{
+		i = 1;
+		for (j = ii + 1; j <= n; j++)
+		{
+			min = inf.;
+			idx = 0;
+			for (k = i; k < j; k++)
+			{
+				a = M(i, k) + M(k + 1, j) + P[i - 1] * P[k] * P[j];
+				if (a < min)
+				{
+					min = a;
+					idx = k;
+				}
+			}
+			M(i, j) = min;
+			K(i, j) = idx;
+			i++;
+		}
+	}
+	return k;
+}

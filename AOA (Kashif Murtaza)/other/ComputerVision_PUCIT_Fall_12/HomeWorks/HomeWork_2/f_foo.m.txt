@@ -1,0 +1,8 @@
+function im2 = f_foo(im)
+
+	im = double(im);
+	M = im - min(im(:));
+	M = (1/max(M(:)))*M;
+	M = 255*M;
+	im2 = uint8(round(M));
+end
